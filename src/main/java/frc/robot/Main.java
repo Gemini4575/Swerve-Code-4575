@@ -4,12 +4,16 @@
 
 package frc.robot;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
 import edu.wpi.first.wpilibj.RobotBase;
 
 public final class Main {
   private Main() {}
 
   public static void main(String... args) {
-    RobotBase.startRobot(Robot::new);
+    ApplicationContext ctx = new AnnotationConfigApplicationContext(SpringConfig.class);
+    RobotBase.startRobot(() -> ctx.getBean(Robot.class));
   }
 }

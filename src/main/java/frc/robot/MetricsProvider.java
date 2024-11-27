@@ -1,19 +1,24 @@
 package frc.robot;
 
+import org.springframework.beans.factory.InitializingBean;
+import org.springframework.stereotype.Component;
+
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class MetricsProvider {
+@Component
+public class MetricsProvider implements InitializingBean{
 
-    private static final Field2d location = new Field2d();
+    private final Field2d location = new Field2d();
 
-    public static void registerMetrics() {
-        SmartDashboard.putData("location", location);
+    public void updateLocation(Pose2d pose) {
+        location.setRobotPose(pose);
     }
 
-    public static void updateLocation(Pose2d pose) {
-        location.setRobotPose(pose);
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        SmartDashboard.putData("location", location);
     }
 
 }

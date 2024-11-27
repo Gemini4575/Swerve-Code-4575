@@ -4,6 +4,8 @@
 
 package frc.robot;
 
+import org.springframework.stereotype.Component;
+
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
 
@@ -30,6 +32,7 @@ import frc.robot.Commands.TelopSwerve;
 import frc.robot.Constanst.JoystickConstants;
 import frc.robot.Subsystems.*;
 
+@Component
 public class RobotContainer {
   
   /* Controllers */
